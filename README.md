@@ -108,11 +108,25 @@ That said, there is no point in documenting it at this time.
 TDD is not applicable, because I also don't know for sure what to expect.
 
 
-## Installation
+## Debugging
 
-Clone this repository, then open the directory using IntelliJ.
-Run the "*Run Plugin*" run configuration and start debugging.
-
+* Clone this repository, then open the directory using IntelliJ.
+* Run the "*Run Plugin*" run configuration.
+  This will build the plugin from scratch. It may take a while.
+* When PyCharm is fully started, open an arbitrary Python project.
+* Open *Settings*, then open the *Pyright* panel in the *Tools* section.
+* Pick an executable (typically named `pyright-langserver`
+  or `pyright-python-langserver`).
+* Click *Ok*. Observe that a new `pyright-experimental.xml` file
+  is created in the `.idea` subdirectory of the Python project.
+* Try hovering over variables to see that nothing happens.
+* Try pressing <kbd>Ctrl</kbd> + <kbd>Space</kbd> or the corresponding
+  shortcut for your system and observe a spinner at the bottom of the drop menu.
+  It persists for about 10 seconds before disappearing.
+* Close PyCharm. Open the `idea.log` file at
+  `/build/idea-sandbox/system/log/idea.log` and search for lines containing
+  `LspServerImpl` or `Lsp4jServerConnector`.
+* Compare that with the traceback excerpt above.
 
 ## Credits
 
