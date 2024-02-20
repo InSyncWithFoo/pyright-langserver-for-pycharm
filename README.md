@@ -13,7 +13,7 @@ There are still quite a few problems to be taken care of.
 ### `pyright-langserver` just... doesn't work
 
 Somehow Pyright doesn't respond to any requests.
-It remains silent except for during initialization and termination.
+It remains silent except during initialization and termination.
 Here's an excerpt from the log (`idea.log`):
 
 ```text
@@ -117,7 +117,7 @@ TDD is not applicable, because I also don't know for sure what to expect.
 * Open *Settings*, then open the *Pyright* panel in the *Tools* section.
 * Pick an executable (typically named `pyright-langserver`
   or `pyright-python-langserver`).
-* Click *Ok*. Observe that a new `pyright-experimental.xml` file
+* Click *OK*. Observe that a new `pyright-experimental.xml` file
   is created in the `.idea` subdirectory of the Python project.
 * Try hovering over variables to see that nothing happens.
 * Try pressing <kbd>Ctrl</kbd> + <kbd>Space</kbd> or the corresponding
