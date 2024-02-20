@@ -1,0 +1,51 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+	<!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+	<id>com.insyncwithfoo.pyright-experimental</id>
+	
+	<!-- Public plugin name should be written in Title Case.
+		 Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+	<name>Pyright (Experimental)</name>
+	
+	<!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+	<vendor email="insyncwithfoo@gmail.com" url="https://github.com/insyncwithfoo">InSync</vendor>
+	
+	<!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+		 Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+		 Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+	<description><![CDATA[
+		Pyright language server for PyCharm Professional Edition
+		using its experimental LSP API.
+	]]></description>
+	
+	<!-- Product and plugin compatibility requirements.
+		 Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+	<depends>com.intellij.modules.lang</depends>
+	<depends>com.intellij.modules.python</depends>
+	<depends>com.intellij.modules.platform</depends>
+	<depends optional="true" config-file="plugin-professional.xml">com.intellij.modules.ultimate</depends>
+	
+	<!-- Extension points defined by the plugin.
+		 Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+	<extensions defaultExtensionNs="com.intellij">
+		<projectConfigurable
+			groupId="tools"
+			displayName="Pyright"
+			instance="com.insyncwithfoo.pyrightexperimental.PyrightConfigurable"
+		/>
+		
+		<localInspection
+			language="Python"
+			groupName="Python"
+			
+			shortName="PyrightInspection"
+			displayName="Pyright inspection"
+			suppressId="Pyright"
+			
+			enabledByDefault="true"
+			level="WARNING"
+			
+			implementationClass="com.insyncwithfoo.pyrightexperimental.PyrightInspection"
+		/>
+	</extensions>
+</idea-plugin>

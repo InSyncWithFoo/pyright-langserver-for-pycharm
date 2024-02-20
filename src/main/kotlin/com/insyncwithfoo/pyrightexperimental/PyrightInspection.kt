@@ -1,0 +1,14 @@
+package com.insyncwithfoo.pyrightexperimental
+
+import com.intellij.codeInspection.ex.ExternalAnnotatorBatchInspection
+import com.jetbrains.python.inspections.PyInspection
+
+class PyrightInspection : PyInspection(), ExternalAnnotatorBatchInspection {
+
+    override fun getShortName() = SHORT_NAME
+
+    companion object {
+        const val SHORT_NAME = "PyrightInspection"
+    }
+
+}
