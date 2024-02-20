@@ -56,9 +56,25 @@ Here's an excerpt from the log (`idea.log`):
 2024-02-20 07:00:45,708 [ 136450]   INFO - #c.i.p.l.i.LspServerImpl - PyrightLspServerDescriptor@test(RUNNING;1): No response from the server in 300ms for: textDocument/hover
 2024-02-20 07:00:45,708 [ 136450]   FINE - #c.i.p.l.i.c.Lsp4jServerConnector - --> PyrightLspServerDescriptor@test: {"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":"7"}}
 2024-02-20 07:00:50,439 [ 141181]   FINE - #c.i.p.l.i.c.Lsp4jServerConnector - --> PyrightLspServerDescriptor@test: {"jsonrpc":"2.0","id":"8","method":"textDocument/completion","params":{"context":{"triggerKind":1},"textDocument":{"uri":"file:///<Redacted>/test/src/pkg/__init__.py"},"position":{"line":21,"character":0}}}
+2024-02-20 07:00:59,063 [ 149805]   WARN - #c.i.e.p.BaseOSProcessHandler - Process hasn't generated any output for a long time.
+If it's a long-running mostly idle daemon process, consider overriding OSProcessHandler#readerOptions with 'BaseOutputReader.Options.forMostlySilentProcess()' to reduce CPU usage.
+Command line: <Redacted>\test\venv\Scripts\pyright-langserver.exe --stdio
+java.lang.Throwable: Process creation:
+	at com.intellij.execution.process.BaseOSProcessHandler.<init>(BaseOSProcessHandler.java:32)
+	at com.intellij.execution.process.OSProcessHandler.<init>(OSProcessHandler.java:44)
 	at com.intellij.platform.lsp.api.LspServerDescriptor.startServerProcess(LspServerDescriptor.kt:95)
 	at com.intellij.platform.lsp.impl.connector.Lsp4jServerConnectorStdio.<init>(Lsp4jServerConnectorStdio.java:19)
 	at com.intellij.platform.lsp.impl.LspServerImpl.J(LspServerImpl.java:383)
+	at com.intellij.openapi.application.impl.ApplicationImpl$2.run(ApplicationImpl.java:249)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1$1.run(Executors.java:702)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1$1.run(Executors.java:699)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.util.concurrent.Executors$PrivilegedThreadFactory$1.run(Executors.java:699)
+	at java.base/java.lang.Thread.run(Thread.java:840)
 2024-02-20 07:01:00,439 [ 151181]   INFO - #c.i.p.l.i.LspServerImpl - PyrightLspServerDescriptor@test(RUNNING;1): No response from the server in 10000ms for: textDocument/completion
 2024-02-20 07:01:00,439 [ 151181]   FINE - #c.i.p.l.i.c.Lsp4jServerConnector - --> PyrightLspServerDescriptor@test: {"jsonrpc":"2.0","method":"$/cancelRequest","params":{"id":"8"}}
 2024-02-20 07:01:09,495 [ 160237]   FINE - #c.i.p.l.i.c.Lsp4jServerConnector - --> PyrightLspServerDescriptor@test: {"jsonrpc":"2.0","method":"workspace/didChangeWatchedFiles","params":{"changes":[{"uri":"file:///<Redacted>/test/.idea/workspace.xml","type":2}]}}
