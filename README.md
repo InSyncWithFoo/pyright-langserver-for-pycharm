@@ -110,6 +110,8 @@ TDD is not applicable, because I also don't know for sure what to expect.
 
 ## Debugging
 
+You can help with debugging by follow these steps:
+
 * Clone this repository, then open the directory using IntelliJ.
 * Run the "*Run Plugin*" run configuration.
   This will build the plugin from scratch. It may take a while.
@@ -127,6 +129,8 @@ TDD is not applicable, because I also don't know for sure what to expect.
   `/build/idea-sandbox/system/log/idea.log` and search for lines containing
   `LspServerImpl` or `Lsp4jServerConnector`.
 * Compare that with the traceback excerpt above.
+* Open a discussion in this repository and share your results.
+
 
 ## Credits
 
