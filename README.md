@@ -4,6 +4,10 @@
 ...Professional Edition, using [the experimental LSP API][2] added in 2023.2.
 <!-- Plugin description end -->
 
+This is a proof of concept.
+Anything on this page might be outdated at any given moment.
+See existing issues for more information on the progress.
+
 
 ## Known problems
 
