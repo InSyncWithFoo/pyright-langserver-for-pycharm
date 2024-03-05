@@ -6,6 +6,7 @@ build/
 
 ### IntelliJ IDEA ###
 .idea/**
+!.idea/gradle.xml
 !.idea/icon.svg
 *.iws
 *.iml

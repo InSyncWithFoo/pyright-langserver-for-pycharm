@@ -6,6 +6,7 @@ import com.intellij.platform.lsp.api.LspServerManager
 import org.eclipse.lsp4j.DidChangeConfigurationParams
 import org.eclipse.lsp4j.InitializeResult
 
+
 @Suppress("UnstableApiUsage")
 class PyrightLspServerListener(val project: Project) : LspServerListener {
     override fun serverInitialized(params: InitializeResult) {
@@ -13,7 +14,8 @@ class PyrightLspServerListener(val project: Project) : LspServerListener {
         // codeAction requests, but it never actually finishes initialising the workspace folders
         // sent with the initialize request unless kickstarted with an (empty) didChangeConfiguration notification
         // see: https://github.com/microsoft/pyright/issues/6874
-        LspServerManager.getInstance(project).getServersForProvider(PyrightLspServerSupportProvider::class.java).forEach {
+        val lspServerManager = LspServerManager.getInstance(project)
+        lspServerManager.getServersForProvider(PyrightLspServerSupportProvider::class.java).forEach {
             it.lsp4jServer.workspaceService.didChangeConfiguration(DidChangeConfigurationParams())
         }
     }

@@ -5,7 +5,6 @@
 
 ## [Unreleased]
 
-
 ### Added
 
 * Initial commit
