@@ -1,12 +1,15 @@
-<!-- Plugin description -->
 # Pyright Language Server for PyCharm Professional
 
-This plugin uses [the experimental LSP API][1] added in 2023.2
-to integrate [Pyright][2]'s capabilities into PyCharm Professional.
+<!-- Plugin description -->
+Pyright language server integration for PyCharm Professional.
+
+This plugin communicates with [the Pyright language server][1]
+using [the experimental LSP API][2] added in PyCharm Professional 2023.2
+to give you annotations about your code as you edit your Python files.
 
 
-  [1]: https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html
-  [2]: https://github.com/microsoft/pyright
+  [1]: https://github.com/microsoft/pyright
+  [2]: https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html
 <!-- Plugin description end -->
 
 This is a proof of concept. It may or may not work.
@@ -26,7 +29,7 @@ It is such a fortune that that plugin does almost the same thing
 and is also written in Kotlin, and hence easily understandable.
 
 The SVG and PNG logos are derived from [the README image][6]
-of the [@microsoft/pyright][2] repository,
+of the [@microsoft/pyright][1] repository,
 generated using Inkscape's autotrace feature.
 
 
