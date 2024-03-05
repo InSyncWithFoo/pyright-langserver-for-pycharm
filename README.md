@@ -33,7 +33,7 @@ generated using Inkscape's autotrace feature.
 ## See also
 
 * [Pyright for PyCharm][7], its sister plugin for PyCharm Community
-  that makes use of Pyright's CLI interface.
+  that makes use of Pyright's command-line interface.
 
 
   [3]: https://github.com/InSyncWithFoo/pyright-experimental-plugin/actions/workflows/build.yaml
