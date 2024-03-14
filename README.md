@@ -22,6 +22,16 @@ ZIP artifacts [are generated][3] for every push/PR by GitHub Actions.
 Download them and follow the instructions described [here][4].
 
 
+## Usage
+
+Go to <b>Settings</b> | <b>Tools</b> |
+<b>Pyright LS (Global)</b> / <b>Pyright LS (Project)</b> and
+set the executable path to your Pyright language server executable.
+
+It is typically named `pyright-langserver`/`pyright-python-langserver`;
+if you have both, pick the first one.
+
+
 ## Credits
 
 Most of the code is derived from [@koxudaxi/ruff-pycharm-plugin][5].
@@ -39,8 +49,8 @@ generated using Inkscape's autotrace feature.
   that makes use of Pyright's command-line interface.
 
 
-  [3]: https://github.com/InSyncWithFoo/pyright-experimental-plugin/actions/workflows/build.yaml
+  [3]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/actions/workflows/build.yaml
   [4]: https://www.jetbrains.com/help/pycharm/managing-plugins.html#install_plugin_from_disk
   [5]: https://github.com/koxudaxi/ruff-pycharm-plugin
   [6]: https://github.com/microsoft/pyright/blob/main/docs/img/PyrightLarge.png
-  [7]: https://github.com/InSyncWithFoo/pyright-plugin
+  [7]: https://github.com/InSyncWithFoo/pyright-for-pycharm

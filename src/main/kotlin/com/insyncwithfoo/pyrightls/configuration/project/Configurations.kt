@@ -1,4 +1,4 @@
-package com.insyncwithfoo.pyrightexperimental.configuration.project
+package com.insyncwithfoo.pyrightls.configuration.project
 
 import com.intellij.openapi.components.BaseState
 import org.jetbrains.annotations.SystemDependent

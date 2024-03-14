@@ -1,4 +1,4 @@
-package com.insyncwithfoo.pyrightexperimental.configuration
+package com.insyncwithfoo.pyrightls.configuration
 
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
 import com.intellij.openapi.ui.TextFieldWithBrowseButton

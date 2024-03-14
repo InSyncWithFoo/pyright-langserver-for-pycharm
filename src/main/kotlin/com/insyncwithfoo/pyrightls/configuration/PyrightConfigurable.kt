@@ -1,4 +1,4 @@
-package com.insyncwithfoo.pyrightexperimental.configuration
+package com.insyncwithfoo.pyrightls.configuration
 
 import com.intellij.openapi.options.Configurable
 
@@ -18,14 +18,14 @@ abstract class PyrightConfigurable<C> : Configurable {
     abstract override fun getDisplayName(): String
     
     override fun createComponent() = panel.component
-
+    
     override fun isModified() =
         originalConfigurations != panel.configurations
-
+    
     override fun apply() {
         service.configurations = panel.configurations
     }
-
+    
     override fun reset() {
         panel.configurations = originalConfigurations
     }

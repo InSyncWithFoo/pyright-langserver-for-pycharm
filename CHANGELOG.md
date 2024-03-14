@@ -7,7 +7,7 @@
 
 ### Added
 
-* Initial commit
+* Project initialized
 
 
-  [Unreleased]: https://github.com/InSyncWithFoo/pyright-experimental-plugin/commits
+  [Unreleased]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/commits

@@ -1,6 +1,6 @@
-package com.insyncwithfoo.pyrightexperimental.configuration.project
+package com.insyncwithfoo.pyrightls.configuration.project
 
-import com.insyncwithfoo.pyrightexperimental.configuration.PyrightConfigurationPanel
+import com.insyncwithfoo.pyrightls.configuration.PyrightConfigurationPanel
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.TextFieldWithBrowseButton
 import javax.swing.JLabel

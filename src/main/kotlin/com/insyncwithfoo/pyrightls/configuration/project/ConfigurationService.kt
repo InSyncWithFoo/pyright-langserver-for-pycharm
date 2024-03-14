@@ -1,20 +1,17 @@
-package com.insyncwithfoo.pyrightexperimental.configuration.application
+package com.insyncwithfoo.pyrightls.configuration.project
 
-import com.insyncwithfoo.pyrightexperimental.configuration.HasConfigurations
-import com.intellij.openapi.components.RoamingType
+import com.insyncwithfoo.pyrightls.configuration.HasConfigurations
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.SimplePersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.openapi.components.service
+import com.intellij.openapi.project.Project
 import com.intellij.util.xmlb.XmlSerializerUtil
 
 
-@State(
-    name = "ApplicationConfigurations",
-    storages = [Storage("pyright-experimental.xml", roamingType = RoamingType.DISABLED)]
-)
-@Service(Service.Level.APP)
+@State(name = "ProjectConfigurations", storages = [Storage("pyright-langserver.xml")])
+@Service(Service.Level.PROJECT)
 class ConfigurationService :
     SimplePersistentStateComponent<Configurations>(Configurations()),
     HasConfigurations<Configurations> {
@@ -24,7 +21,7 @@ class ConfigurationService :
         set(value) = XmlSerializerUtil.copyBean(value, state)
     
     companion object {
-        fun getInstance() = service<ConfigurationService>()
+        fun getInstance(project: Project): ConfigurationService = project.service()
     }
     
 }

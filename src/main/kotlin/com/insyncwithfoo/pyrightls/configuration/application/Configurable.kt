@@ -1,6 +1,6 @@
-package com.insyncwithfoo.pyrightexperimental.configuration.application
+package com.insyncwithfoo.pyrightls.configuration.application
 
-import com.insyncwithfoo.pyrightexperimental.configuration.PyrightConfigurable
+import com.insyncwithfoo.pyrightls.configuration.PyrightConfigurable
 import com.intellij.util.xmlb.XmlSerializerUtil
 
 

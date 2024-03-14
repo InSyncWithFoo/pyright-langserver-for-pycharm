@@ -1,10 +1,10 @@
-package com.insyncwithfoo.pyrightexperimental.configuration
+package com.insyncwithfoo.pyrightls.configuration
 
-import com.insyncwithfoo.pyrightexperimental.configuration.project.ConfigurationService
+import com.insyncwithfoo.pyrightls.configuration.project.ConfigurationService
 import com.intellij.openapi.project.Project
 import org.jetbrains.annotations.SystemDependent
-import com.insyncwithfoo.pyrightexperimental.configuration.application.ConfigurationService as ApplicationConfigurationService
-import com.insyncwithfoo.pyrightexperimental.configuration.project.ConfigurationService as ProjectConfigurationService
+import com.insyncwithfoo.pyrightls.configuration.application.ConfigurationService as ApplicationConfigurationService
+import com.insyncwithfoo.pyrightls.configuration.project.ConfigurationService as ProjectConfigurationService
 
 
 data class PyrightAllConfigurations(
@@ -31,11 +31,11 @@ class PyrightConfigurationService private constructor(
     init {
         val applicationConfigurations = applicationService.configurations
         val projectConfigurations = projectService.configurations
-
+        
         configurations = PyrightAllConfigurations(
             alwaysUseGlobal = applicationConfigurations.alwaysUseGlobal,
             globalExecutable = applicationConfigurations.globalExecutable,
-
+            
             projectExecutable = projectConfigurations.projectExecutable
         )
     }

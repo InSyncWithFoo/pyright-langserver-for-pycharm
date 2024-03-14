@@ -1,6 +1,6 @@
-package com.insyncwithfoo.pyrightexperimental
+package com.insyncwithfoo.pyrightls
 
-import com.insyncwithfoo.pyrightexperimental.configuration.PyrightConfigurationService
+import com.insyncwithfoo.pyrightls.configuration.PyrightConfigurationService
 import com.intellij.codeInspection.ex.InspectionToolRegistrar
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
@@ -13,15 +13,15 @@ private val Project.isPyrightLSEnabled: Boolean
     get() {
         val inspectionProfileManager = ProjectInspectionProfileManager.getInstance(this)
         val toolWrapper = InspectionToolRegistrar.getInstance().createTools()
-            .find { it.shortName == PyrightInspection.SHORT_NAME } ?: return false
+            .find { it.shortName == PyrightLSInspection.SHORT_NAME } ?: return false
         
         return inspectionProfileManager.currentProfile.isToolEnabled(toolWrapper.displayKey)
     }
 
 
 @Suppress("UnstableApiUsage")
-class PyrightLspServerSupportProvider : LspServerSupportProvider {
-
+class PyrightLSLspServerSupportProvider : LspServerSupportProvider {
+    
     override fun fileOpened(
         project: Project,
         file: VirtualFile,
@@ -35,10 +35,10 @@ class PyrightLspServerSupportProvider : LspServerSupportProvider {
         val configurations = configurationService.configurations
         val executable = File(configurations.executable ?: return)
             .takeIf { it.exists() } ?: return
-
-        val descriptor = PyrightLspServerDescriptor(project, executable)
-
+        
+        val descriptor = PyrightLSLspServerDescriptor(project, executable)
+        
         serverStarter.ensureServerStarted(descriptor)
     }
-
+    
 }

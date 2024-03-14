@@ -1,15 +1,15 @@
-package com.insyncwithfoo.pyrightexperimental
+package com.insyncwithfoo.pyrightls
 
 import com.intellij.codeInspection.ex.ExternalAnnotatorBatchInspection
 import com.jetbrains.python.inspections.PyInspection
 
 
-class PyrightInspection : PyInspection(), ExternalAnnotatorBatchInspection {
-
+class PyrightLSInspection : PyInspection(), ExternalAnnotatorBatchInspection {
+    
     override fun getShortName() = SHORT_NAME
-
+    
     companion object {
         const val SHORT_NAME = "PyrightLSInspection"
     }
-
+    
 }

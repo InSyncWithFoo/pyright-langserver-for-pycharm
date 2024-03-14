@@ -1,8 +1,9 @@
 <idea-plugin>
 	<extensions defaultExtensionNs="com.intellij">
+		<!--suppress PluginXmlValidity -->
 		<platform.lsp.serverSupportProvider
-			id="com.insyncwithfoo.pyrightexperimental"
-			implementation="com.insyncwithfoo.pyrightexperimental.PyrightLspServerSupportProvider"
+			id="com.insyncwithfoo.pyrightls"
+			implementation="com.insyncwithfoo.pyrightls.PyrightLSLspServerSupportProvider"
 		/>
 	</extensions>
 </idea-plugin>

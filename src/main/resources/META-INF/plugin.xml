@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
 	<!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-	<id>com.insyncwithfoo.pyrightexperimental</id>
+	<id>com.insyncwithfoo.pyrightls</id>
 	
 	<!-- Public plugin name should be written in Title Case.
 		 Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
@@ -28,13 +28,13 @@
 		<applicationConfigurable
 			groupId="tools"
 			displayName="Pyright LS (Global)"
-			instance="com.insyncwithfoo.pyrightexperimental.configuration.application.PyrightApplicationConfigurable"
+			instance="com.insyncwithfoo.pyrightls.configuration.application.PyrightApplicationConfigurable"
 		/>
 		
 		<projectConfigurable
 			groupId="tools"
 			displayName="Pyright LS (Project)"
-			instance="com.insyncwithfoo.pyrightexperimental.configuration.project.PyrightProjectConfigurable"
+			instance="com.insyncwithfoo.pyrightls.configuration.project.PyrightProjectConfigurable"
 		/>
 		
 		<localInspection
@@ -48,7 +48,7 @@
 			enabledByDefault="true"
 			level="WARNING"
 			
-			implementationClass="com.insyncwithfoo.pyrightexperimental.PyrightInspection"
+			implementationClass="com.insyncwithfoo.pyrightls.PyrightLSInspection"
 		/>
 	</extensions>
 </idea-plugin>
