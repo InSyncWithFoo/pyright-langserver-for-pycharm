@@ -1,12 +1,13 @@
 package com.insyncwithfoo.pyrightls
 
-import com.insyncwithfoo.pyrightls.configuration.PyrightConfigurationService
+import com.insyncwithfoo.pyrightls.configuration.PyrightLSConfigurationService
 import com.intellij.codeInspection.ex.InspectionToolRegistrar
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.platform.lsp.api.LspServerSupportProvider
 import com.intellij.profile.codeInspection.ProjectInspectionProfileManager
-import java.io.File
+import java.nio.file.Path
+import kotlin.io.path.exists
 
 
 private val Project.isPyrightLSEnabled: Boolean
@@ -16,6 +17,17 @@ private val Project.isPyrightLSEnabled: Boolean
             .find { it.shortName == PyrightLSInspection.SHORT_NAME } ?: return false
         
         return inspectionProfileManager.currentProfile.isToolEnabled(toolWrapper.displayKey)
+    }
+
+
+private val Project.pyrightLSExecutable: Path?
+    get() {
+        val projectPath = Path.of(basePath ?: "")
+        
+        val configurationService = PyrightLSConfigurationService.getInstance(this)
+        val configurations = configurationService.configurations
+        
+        return projectPath.resolve(configurations.executable ?: return null).normalize()
     }
 
 
@@ -31,11 +43,7 @@ class PyrightLSLspServerSupportProvider : LspServerSupportProvider {
             return
         }
         
-        val configurationService = PyrightConfigurationService.getInstance(project)
-        val configurations = configurationService.configurations
-        val executable = File(configurations.executable ?: return)
-            .takeIf { it.exists() } ?: return
-        
+        val executable = project.pyrightLSExecutable?.takeIf { it.exists() } ?: return
         val descriptor = PyrightLSLspServerDescriptor(project, executable)
         
         serverStarter.ensureServerStarted(descriptor)
