@@ -24,12 +24,16 @@ Download them and follow the instructions described [here][4].
 
 ## Usage
 
+![](.github/readme/demo1.png)
+
 Go to <b>Settings</b> | <b>Tools</b> |
 <b>Pyright LS (Global)</b> / <b>Pyright LS (Project)</b> and
 set the executable path to your Pyright language server executable.
-
 It is typically named `pyright-langserver`/`pyright-python-langserver`;
 if you have both, pick the first one.
+
+You might need to reopen your files or restart the IDE
+for the files to be recognized by the language server.
 
 
 ## Credits
