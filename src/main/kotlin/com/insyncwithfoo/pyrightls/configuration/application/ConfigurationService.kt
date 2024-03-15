@@ -1,6 +1,6 @@
 package com.insyncwithfoo.pyrightls.configuration.application
 
-import com.insyncwithfoo.pyrightls.configuration.HasConfigurations
+import com.insyncwithfoo.pyrightls.configuration.common.HasConfigurations
 import com.intellij.openapi.components.RoamingType
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.SimplePersistentStateComponent

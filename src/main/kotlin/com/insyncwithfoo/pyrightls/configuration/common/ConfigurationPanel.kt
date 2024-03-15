@@ -1,4 +1,4 @@
-package com.insyncwithfoo.pyrightls.configuration
+package com.insyncwithfoo.pyrightls.configuration.common
 
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
 import com.intellij.openapi.ui.TextFieldWithBrowseButton
@@ -13,7 +13,7 @@ private fun TextFieldWithBrowseButton.addBrowseButtonListener() {
 }
 
 
-abstract class PyrightConfigurationPanel<C> {
+abstract class PyrightLSConfigurationPanel<C> {
     
     protected abstract var panel: JPanel
     

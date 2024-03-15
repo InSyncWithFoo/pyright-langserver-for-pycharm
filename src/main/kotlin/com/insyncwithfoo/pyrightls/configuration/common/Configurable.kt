@@ -1,4 +1,4 @@
-package com.insyncwithfoo.pyrightls.configuration
+package com.insyncwithfoo.pyrightls.configuration.common
 
 import com.intellij.openapi.options.Configurable
 
@@ -8,10 +8,10 @@ interface HasConfigurations<C> {
 }
 
 
-abstract class PyrightConfigurable<C> : Configurable {
+abstract class PyrightLSConfigurable<C> : Configurable {
     
     abstract val service: HasConfigurations<C>
-    abstract val panel: PyrightConfigurationPanel<C>
+    abstract val panel: PyrightLSConfigurationPanel<C>
     
     abstract val originalConfigurations: C
     

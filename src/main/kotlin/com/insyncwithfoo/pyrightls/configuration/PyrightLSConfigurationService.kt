@@ -7,7 +7,7 @@ import com.insyncwithfoo.pyrightls.configuration.application.ConfigurationServic
 import com.insyncwithfoo.pyrightls.configuration.project.ConfigurationService as ProjectConfigurationService
 
 
-data class PyrightAllConfigurations(
+internal data class PyrightLSAllConfigurations(
     val alwaysUseGlobal: Boolean = false,
     val globalExecutable: @SystemDependent String? = null,
     
@@ -21,18 +21,18 @@ data class PyrightAllConfigurations(
 }
 
 
-class PyrightConfigurationService private constructor(
+internal class PyrightLSConfigurationService private constructor(
     applicationService: ApplicationConfigurationService,
     projectService: ProjectConfigurationService
 ) {
     
-    val configurations: PyrightAllConfigurations
+    val configurations: PyrightLSAllConfigurations
     
     init {
         val applicationConfigurations = applicationService.configurations
         val projectConfigurations = projectService.configurations
         
-        configurations = PyrightAllConfigurations(
+        configurations = PyrightLSAllConfigurations(
             alwaysUseGlobal = applicationConfigurations.alwaysUseGlobal,
             globalExecutable = applicationConfigurations.globalExecutable,
             
@@ -41,11 +41,11 @@ class PyrightConfigurationService private constructor(
     }
     
     companion object {
-        fun getInstance(project: Project): PyrightConfigurationService {
+        fun getInstance(project: Project): PyrightLSConfigurationService {
             val applicationService = ApplicationConfigurationService.getInstance()
             val projectService = ConfigurationService.getInstance(project)
             
-            return PyrightConfigurationService(applicationService, projectService)
+            return PyrightLSConfigurationService(applicationService, projectService)
         }
     }
     

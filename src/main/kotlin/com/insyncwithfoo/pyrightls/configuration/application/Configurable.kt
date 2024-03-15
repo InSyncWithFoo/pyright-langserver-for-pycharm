@@ -1,10 +1,10 @@
 package com.insyncwithfoo.pyrightls.configuration.application
 
-import com.insyncwithfoo.pyrightls.configuration.PyrightConfigurable
+import com.insyncwithfoo.pyrightls.configuration.common.PyrightLSConfigurable
 import com.intellij.util.xmlb.XmlSerializerUtil
 
 
-class PyrightApplicationConfigurable : PyrightConfigurable<Configurations>() {
+class PyrightLSApplicationConfigurable : PyrightLSConfigurable<Configurations>() {
     
     override val service = ConfigurationService.getInstance()
     override val panel by lazy { ConfigurationPanel() }
