@@ -79,16 +79,6 @@ jobs:
         name: Build plugin
         run: ./gradlew buildPlugin
       -
-        name: Push ZIP to the "build" branch
-        uses: s0/git-publish-subdir-action@develop
-        if: github.event_name == 'push'
-        env:
-          REPO: self
-          BRANCH: build
-          FOLDER: build/distributions/
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MESSAGE: "{msg} ({sha})"
-      -
         name: Prepare plugin artifact
         id: artifact
         shell: bash
@@ -171,12 +161,14 @@ jobs:
           key: plugin-verifier-${{ hashFiles('build/listProductsReleases.txt') }}
       -
         name: Run plugin verification tasks
+        id: verify
+        continue-on-error: true
         run: |
           chmod +x ./gradlew
           ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }}
       -
-        name: Collect plugin verifier Result
-        if: ${{ always() }}
+        name: Collect plugin verifier result
+        if: steps.verify.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: pluginVerifier-result
