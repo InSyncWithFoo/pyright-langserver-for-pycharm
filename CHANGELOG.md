@@ -5,7 +5,9 @@
 
 ## [Unreleased]
 
-<i>This section is currently empty.</i>
+### Changed
+
+* Change marketplace plugin name
 
 
 ## [0.1.0-poc.1] - 2024-03-17
