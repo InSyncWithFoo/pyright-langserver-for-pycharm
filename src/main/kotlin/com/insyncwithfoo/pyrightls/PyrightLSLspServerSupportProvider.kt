@@ -39,14 +39,12 @@ class PyrightLSLspServerSupportProvider : LspServerSupportProvider {
         file: VirtualFile,
         serverStarter: LspServerSupportProvider.LspServerStarter
     ) {
-        if (file.extension != "py" || !project.isPyrightLSEnabled) {
-            return
+        if (file.extension == "py" && project.isPyrightLSEnabled) {
+            val executable = project.pyrightLSExecutable?.takeIf { it.exists() } ?: return
+            val descriptor = PyrightLSLspServerDescriptor(project, executable)
+            
+            serverStarter.ensureServerStarted(descriptor)
         }
-        
-        val executable = project.pyrightLSExecutable?.takeIf { it.exists() } ?: return
-        val descriptor = PyrightLSLspServerDescriptor(project, executable)
-        
-        serverStarter.ensureServerStarted(descriptor)
     }
     
 }

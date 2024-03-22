@@ -1,13 +1,14 @@
 package com.insyncwithfoo.pyrightls.configuration.application
 
-import com.insyncwithfoo.pyrightls.configuration.common.PyrightLSConfigurationPanel
+import com.insyncwithfoo.pyrightls.configuration.common.ConfigurationPanel
+import com.insyncwithfoo.pyrightls.message
 import com.intellij.openapi.ui.TextFieldWithBrowseButton
 import javax.swing.JCheckBox
 import javax.swing.JLabel
 import javax.swing.JPanel
 
 
-class ConfigurationPanel : PyrightLSConfigurationPanel<Configurations>() {
+internal class ConfigurationPanel : ConfigurationPanel<Configurations>() {
     
     override lateinit var panel: JPanel
     
@@ -38,8 +39,8 @@ class ConfigurationPanel : PyrightLSConfigurationPanel<Configurations>() {
     override fun getService() = ConfigurationService.getInstance()
     
     override fun setLabels() {
-        alwaysUseGlobalInput.text = "Always use global executable"
-        globalExecutableLabel.text = "Global executable:"
+        alwaysUseGlobalInput.text = message("configurations.global.alwaysUseGlobal.label")
+        globalExecutableLabel.text = message("configurations.global.globalExecutable.label")
     }
     
 }

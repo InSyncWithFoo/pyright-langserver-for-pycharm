@@ -23,7 +23,7 @@ class PyrightLSLspServerDescriptor(
     override val lspServerListener = PyrightLSLspServerListener(project)
     
     companion object {
-        const val PRESENTABLE_NAME = "Pyright"
+        val PRESENTABLE_NAME = message("languageServer.representableName")
     }
     
 }

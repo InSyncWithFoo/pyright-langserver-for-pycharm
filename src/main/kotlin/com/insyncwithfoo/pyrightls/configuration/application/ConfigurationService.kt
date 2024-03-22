@@ -15,7 +15,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
     storages = [Storage("pyright-langserver.xml", roamingType = RoamingType.DISABLED)]
 )
 @Service(Service.Level.APP)
-class ConfigurationService :
+internal class ConfigurationService :
     SimplePersistentStateComponent<Configurations>(Configurations()),
     HasConfigurations<Configurations> {
     

@@ -4,16 +4,19 @@ import com.intellij.openapi.components.BaseState
 import org.jetbrains.annotations.SystemDependent
 
 
-class Configurations : BaseState() {
+internal class Configurations : BaseState() {
     
     var projectExecutable by string(null)
+    var autoSuggestExecutable by property(true)
     
     companion object {
         fun create(
-            projectExecutable: @SystemDependent String?
+            projectExecutable: @SystemDependent String?,
+            autoSuggestExecutable: Boolean
         ) =
             Configurations().apply {
                 this.projectExecutable = projectExecutable
+                this.autoSuggestExecutable = autoSuggestExecutable
             }
     }
     
