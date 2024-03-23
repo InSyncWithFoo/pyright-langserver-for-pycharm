@@ -22,6 +22,9 @@ This plugin has not been published to [the Marketplace][3].
 Download the ZIP file(s) manually from [the <i>Releases</i> tab][4]
 or [the <i>Actions</i> tab][5] and follow the instructions described [here][6].
 
+Currently supported versions:
+2023.3.1 (build 233.11799.259) - 2024.1.* (build 241.*).
+
 
 ## Usage
 

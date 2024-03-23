@@ -20,7 +20,7 @@
 * Configuration constructs are now marked internal. (6dffdaa6)
 * [`CHANGELOG.md`][2-2] is rewritten and
   `CHANGELOG_CODE.md` is added. (6dffdaa6)
-* Gradle is updated to 8.7. (HEAD) 
+* Gradle is updated to 8.7. (4ad34a46)
 
 
   [2-1]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/tree/master/src/main/resources/icons
