@@ -12,7 +12,18 @@ For user-facing changes, see [`CHANGELOG.md`][_-1].
 
 ## [Unreleased]
 
-<i>This section is currently empty.</i>
+### Changed
+
+* The [`build.yaml`][5-1] workflow now:
+  * Edits old releases when the changelogs are changed, and
+  * Upload corresponding artifacts as new drafts are created.
+  
+  The two helper Python scripts are added under [`.scripts`][5-2]. (HEAD)
+
+* Plugin verifier results are now always uploaded. (HEAD)
+
+[5-1]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/blob/master/.github/workflows/build.yaml
+[5-2]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/blob/master/.scripts/
 
 
 ## [0.1.0-poc.2] - 2024-03-24

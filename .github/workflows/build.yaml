@@ -45,13 +45,18 @@ jobs:
         name: Gradle wrapper validation
         uses: gradle/wrapper-validation-action@v2.1.2
       -
-        name: Setup Java
+        name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: 17
       -
-        name: Setup Gradle
+        name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      -
+        name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-home-cache-cleanup: true
@@ -63,13 +68,13 @@ jobs:
           chmod +x ./gradlew
           PROPERTIES="$(./gradlew properties --console=plain -q)"
           VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
-          CHANGELOG="$(./gradlew getChangelog --unreleased --no-header --console=plain -q)"
+          CHANGELOG="$(python .scripts/changelog.py $VERSION)"
           
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "pluginVerifierHomeDir=~/.pluginVerifier" >> $GITHUB_OUTPUT
+          
           # Avoid false positive error that CHANGELOG is not exported
           # echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
-          
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -78,6 +83,16 @@ jobs:
       -
         name: Build plugin
         run: ./gradlew buildPlugin
+      -
+        name: Push ZIP to the "build" branch
+        uses: s0/git-publish-subdir-action@develop
+        if: github.event_name == 'push'
+        env:
+          REPO: self
+          BRANCH: build
+          FOLDER: build/distributions/
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "{msg} ({sha})"
       -
         name: Prepare plugin artifact
         id: artifact
@@ -94,6 +109,31 @@ jobs:
         with:
           name: ${{ steps.artifact.outputs.filename }}
           path: ./build/distributions/content/*/*
+  
+  changelog:
+    name: Sync changelogs
+    if: github.event_name != 'pull_request'
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      -
+        name: Fetch sources
+        uses: actions/checkout@v4
+      -
+        name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      -
+        name: Edit old release notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python .scripts/edit_releases.py ${{ needs.build.outputs.version }}
   
   inspect:
     name: Inspect code
@@ -116,7 +156,7 @@ jobs:
         name: Fetch sources
         uses: actions/checkout@v4
       -
-        name: Setup Java
+        name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: zulu
@@ -143,32 +183,31 @@ jobs:
         name: Fetch sources
         uses: actions/checkout@v4
       -
-        name: Setup Java
+        name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: 17
       -
-        name: Setup Gradle
+        name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-home-cache-cleanup: true
       -
-        name: Setup plugin verifier IDEs cache
+        name: Set up plugin verifier IDEs cache
         uses: actions/cache@v4
         with:
           path: ${{ needs.build.outputs.pluginVerifierHomeDir }}/ides
           key: plugin-verifier-${{ hashFiles('build/listProductsReleases.txt') }}
       -
         name: Run plugin verification tasks
-        id: verify
         continue-on-error: true
         run: |
           chmod +x ./gradlew
           ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }}
       -
         name: Collect plugin verifier result
-        if: steps.verify.outcome == 'success'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pluginVerifier-result
@@ -187,6 +226,8 @@ jobs:
       -
         name: Fetch sources
         uses: actions/checkout@v4
+        with:
+          ref: build
       -
         name: Remove old release drafts
         env:
@@ -200,7 +241,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "v${{ needs.build.outputs.version }}" \
+          gh release create "v${{ needs.build.outputs.version }}" ./*.zip \
             --draft \
             --title "v${{ needs.build.outputs.version }}" \
             --notes "$(cat << 'EOM'
