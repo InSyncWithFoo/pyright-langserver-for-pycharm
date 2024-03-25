@@ -14,16 +14,22 @@ For user-facing changes, see [`CHANGELOG.md`][_-1].
 
 ### Changed
 
-* The [`build.yaml`][5-1] workflow now:
+* The [`build.yaml`][3-1] workflow now:
   * Edits old releases when the changelogs are changed, and
   * Upload corresponding artifacts as new drafts are created.
   
-  The two helper Python scripts are added under [`.scripts`][5-2]. (HEAD)
+  The two helper Python scripts are added under [`.scripts`][3-2].
+  (ca944192)
 
-* Plugin verifier results are now always uploaded. (HEAD)
+* Plugin verifier results are now always uploaded. (ca944192)
+* [The Qodana Gradle plugin][3-3] and its corresponding action
+  [@JetBrains/qodana-action][3-4] are updated to 2023.3.2. (HEAD)
 
-[5-1]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/blob/master/.github/workflows/build.yaml
-[5-2]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/blob/master/.scripts/
+
+  [3-1]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/blob/master/.github/workflows/build.yaml
+  [3-2]: https://github.com/InSyncWithFoo/pyright-langserver-for-pycharm/blob/master/.scripts/
+  [3-3]: https://plugins.gradle.org/plugin/org.jetbrains.qodana
+  [3-4]: https://github.com/JetBrains/qodana-action
 
 
 ## [0.1.0-poc.2] - 2024-03-24
